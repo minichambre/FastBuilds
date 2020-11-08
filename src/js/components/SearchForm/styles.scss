@@ -3,5 +3,47 @@
     height: 50px;
     padding: 5px 10px;
     font-size: 16px;
-    margin: 15px auto 5px auto 0px;
+    border: none;
+    max-width: 300px;
+    margin: auto;
+    display: block;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    background: #eee;
+}
+
+.resultList {
+    background: #4a4a4a;
+    width: 100%;
+    border: none;
+    max-width: 300px;
+    margin: auto;
+    display: block;
+    margin-top: 3px;
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    .resultItem {
+        padding: 10px;
+        padding: 10px;
+        border-top: 1px solid #626262;
+        cursor: pointer;
+
+        &:hover {
+            background:#797979;
+            color: #131313;
+        }
+
+        &:first-child {
+            border-top: none;
+        }
+        &:last-child {
+            
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    }
 }
