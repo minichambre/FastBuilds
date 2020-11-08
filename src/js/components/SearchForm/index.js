@@ -10,6 +10,12 @@ export default class SearchForm extends Component {
         }
         this.handleInput = this.handleInput.bind(this);
         this.lookup = this.lookup.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+        this.setChampionSelect = this.setChampionSelect.bind(this);
+    }
+
+    setChampionSelect(selectedChampion) {
+        this.props.setSelectedChampion(selectedChampion);
     }
 
     handleInput(event) {
@@ -18,7 +24,27 @@ export default class SearchForm extends Component {
             value: search
         })
 
-        this.lookup(search);
+        if (search == '') {
+            this.setState({
+                results: []
+            })
+        } else {
+            this.lookup(search);
+        }
+    }
+
+    handleSelect(event, id) {
+        let champData = this.state.results[id];
+
+        this.setChampionSelect(champData)
+        this.setState({
+            selected: champData,
+            value: champData.name
+        }, () => {
+            this.setState({
+                results: []
+            })
+        });
     }
 
     lookup(term) {
@@ -27,7 +53,15 @@ export default class SearchForm extends Component {
             if (response.status !== 200) {
                 console.log('error');
             }
-            response.json().then(asJson => this.setState({results: asJson}));
+            response.json().then(asJson => {
+                if (asJson.length === 1) {
+                    this.setChampionSelect(asJson[0]);
+                    this.setState({
+                        selected: asJson[0]
+                    })
+                }
+                this.setState({results: asJson})
+            });
         })
         .catch(err => {
             console.log(err);
@@ -49,7 +83,7 @@ export default class SearchForm extends Component {
                     <div className='resultList'>
                     {this.state.results.map((champion, index) => {
                         return (
-                            <div className='resultItem font-body font-bold'>
+                            <div key={'champion-' + index} className='resultItem font-body font-bold' onClick={() => {this.handleSelect(event, index)}}>
                                 {champion.name}
                             </div>
                         )
