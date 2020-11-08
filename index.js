@@ -26,6 +26,8 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
 
+//public assets
+app.use(express.static('public'));
 
 //Homepage
 app.get('/', (req, res) => {
