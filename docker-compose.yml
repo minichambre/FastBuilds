@@ -9,8 +9,6 @@ services:
             - fastbuilds-app
         depends_on: 
             - mongo
-        volumes:
-            - ./index.js:/usr/src/app/index.js
     mongo:
         image: mongo:3.6-xenial
         environment: 
