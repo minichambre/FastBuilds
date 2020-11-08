@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import SearchForm from "./components/SearchForm";
+import './main.scss';
+import SearchStage from './components/SearchStage';
 
-let searchFormContainer = document.getElementById('search-container');
-ReactDOM.render(<SearchForm/>, searchFormContainer);
+let reactRoot = document.getElementById('search-container');
+ReactDOM.render(<SearchStage/>, reactRoot);
