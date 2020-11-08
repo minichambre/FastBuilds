@@ -1,0 +1,30 @@
+version: "3"
+services:
+    express:
+        build: ./
+        env_file: .env
+        ports:
+            - "3000:3000"
+        networks:
+            - fastbuilds-app
+        depends_on: 
+            - mongo
+        volumes:
+            - ./index.js:/usr/src/app/index.js
+    mongo:
+        image: mongo:3.6-xenial
+        environment: 
+            - MONGO_INIT_DATABASE=fastbuilds
+        ports:
+            - "27017:27017"
+        networks:
+            - fastbuilds-app
+        volumes:
+            - mongo-data:/data/db
+
+networks:
+    fastbuilds-app:
+        driver: bridge
+volumes:
+    mongo-data:
+        driver: local
