@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import RuneStage from '../RunesStage';
 
 export default class ChampionStage extends Component {
     constructor() {
@@ -15,7 +15,8 @@ export default class ChampionStage extends Component {
     render() {
         return (
             <React.Fragment>
-                Hello from champion stage, showing {this.props.champion.name}  
+                Hello from champion stage, showing {this.props.champion.name}
+                <RuneStage/>
             </React.Fragment>
         )
     }
